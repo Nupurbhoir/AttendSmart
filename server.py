@@ -9,7 +9,7 @@ from io import StringIO
 from datetime import datetime, time, timedelta
 
 # --- CONSTANTS & CONFIGURATION ---
-PORT = 8000
+PORT = int(os.environ.get('PORT', 8000))
 DB_FILE = "attendance.db"
 
 # Default case study data for initialization
