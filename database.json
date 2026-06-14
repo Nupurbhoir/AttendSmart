@@ -1,0 +1,179 @@
+{
+    "students": {
+        "S101": {
+            "id": "S101",
+            "name": "Alice Smith",
+            "email": "alice@school.edu",
+            "parentEmail": "parent.alice@home.com",
+            "presents": 9,
+            "lates": 1,
+            "absents": 0,
+            "avatarClass": "av-indigo",
+            "initials": "AS"
+        },
+        "S102": {
+            "id": "S102",
+            "name": "Bob Jones",
+            "email": "bob@school.edu",
+            "parentEmail": "parent.bob@home.com",
+            "presents": 6,
+            "lates": 1,
+            "absents": 3,
+            "avatarClass": "av-orange",
+            "initials": "BJ"
+        },
+        "S103": {
+            "id": "S103",
+            "name": "Charlie Brown",
+            "email": "charlie@school.edu",
+            "parentEmail": "parent.charlie@home.com",
+            "presents": 1,
+            "lates": 0,
+            "absents": 9,
+            "avatarClass": "av-teal",
+            "initials": "CB"
+        },
+        "S154": {
+            "id": "S154",
+            "name": "grishma  thakare",
+            "email": "grishmathakare@gmail.com",
+            "parentEmail": "nupurbhoir2106@gmail.com",
+            "presents": 1,
+            "lates": 0,
+            "absents": 9,
+            "avatarClass": "av-blue",
+            "initials": "GT"
+        }
+    },
+    "devices": {
+        "DEV_ROOM_101": {
+            "id": "DEV_ROOM_101",
+            "active": true,
+            "name": "Biometric Face Scanner (Room 101)"
+        },
+        "DEV_MAIN_GATE": {
+            "id": "DEV_MAIN_GATE",
+            "active": true,
+            "name": "RFID Badge Reader (Main Entrance)"
+        },
+        "DEV_INACTIVE": {
+            "id": "DEV_INACTIVE",
+            "active": false,
+            "name": "Deactivated Scanner (DEV_INACTIVE)"
+        }
+    },
+    "logs": [
+        {
+            "category": "system",
+            "time": "01:43 PM",
+            "message": "Simulation database state reset to case study defaults."
+        },
+        {
+            "category": "ingest",
+            "time": "08:55 AM",
+            "message": "Check-in request received from reader <code>DEV_ROOM_101</code> for student Alice Smith."
+        },
+        {
+            "category": "kafka",
+            "time": "08:55 AM",
+            "message": "Ingested event validated. Kafka partitioned log: <code>partition_S101</code>."
+        },
+        {
+            "category": "success",
+            "time": "08:55 AM",
+            "message": "Attendance logged successfully. Student: Alice Smith, Status: <strong>PRESENT</strong>."
+        },
+        {
+            "category": "ingest",
+            "time": "08:55 AM",
+            "message": "Check-in request received from reader <code>DEV_ROOM_101</code> for student Charlie Brown."
+        },
+        {
+            "category": "kafka",
+            "time": "08:55 AM",
+            "message": "Ingested event validated. Kafka partitioned log: <code>partition_S103</code>."
+        },
+        {
+            "category": "success",
+            "time": "08:55 AM",
+            "message": "Attendance logged successfully. Student: Charlie Brown, Status: <strong>PRESENT</strong>."
+        },
+        {
+            "category": "warning",
+            "time": "08:55 AM",
+            "message": "Automated alert dispatched to parent of Charlie Brown: \"Attendance warning: Charlie Brown's attendance rate has dropped to 10.0%.\""
+        },
+        {
+            "category": "ingest",
+            "time": "08:55 AM",
+            "message": "Check-in request received from reader <code>DEV_ROOM_101</code> for student Charlie Brown."
+        },
+        {
+            "category": "error",
+            "time": "08:55 AM",
+            "message": "Check-in SKIPPED: Duplicate card/face swipe registered within 60s window."
+        },
+        {
+            "category": "ingest",
+            "time": "08:55 AM",
+            "message": "Check-in request received from reader <code>DEV_ROOM_101</code> for student Bob Jones."
+        },
+        {
+            "category": "kafka",
+            "time": "08:55 AM",
+            "message": "Ingested event validated. Kafka partitioned log: <code>partition_S102</code>."
+        },
+        {
+            "category": "success",
+            "time": "08:55 AM",
+            "message": "Attendance logged successfully. Student: Bob Jones, Status: <strong>PRESENT</strong>."
+        },
+        {
+            "category": "warning",
+            "time": "08:55 AM",
+            "message": "Automated alert dispatched to parent of Bob Jones: \"Attendance warning: Bob Jones's attendance rate has dropped to 70.0%.\""
+        },
+        {
+            "category": "system",
+            "time": "01:45 PM",
+            "message": "Database: Onboarded new student profile SS154 (grishma  thakare)."
+        },
+        {
+            "category": "ingest",
+            "time": "08:55 AM",
+            "message": "Check-in request received from reader <code>DEV_ROOM_101</code> for student grishma  thakare."
+        },
+        {
+            "category": "kafka",
+            "time": "08:55 AM",
+            "message": "Ingested event validated. Kafka partitioned log: <code>partition_S154</code>."
+        },
+        {
+            "category": "success",
+            "time": "08:55 AM",
+            "message": "Attendance logged successfully. Student: grishma  thakare, Status: <strong>PRESENT</strong>."
+        },
+        {
+            "category": "warning",
+            "time": "08:55 AM",
+            "message": "Automated alert dispatched to parent of grishma  thakare: \"Attendance warning: grishma  thakare's attendance rate has dropped to 10.0%.\""
+        }
+    ],
+    "alerts": [
+        {
+            "time": "08:55 AM",
+            "sender": "Alert sent to parent (parent.charlie@home.com)",
+            "text": "Attendance warning: Charlie Brown's attendance rate has dropped to 10.0%."
+        },
+        {
+            "time": "08:55 AM",
+            "sender": "Alert sent to parent (parent.bob@home.com)",
+            "text": "Attendance warning: Bob Jones's attendance rate has dropped to 70.0%."
+        },
+        {
+            "time": "08:55 AM",
+            "sender": "Alert sent to parent (nupurbhoir2106@gmail.com)",
+            "text": "Attendance warning: grishma  thakare's attendance rate has dropped to 10.0%."
+        }
+    ]
+}

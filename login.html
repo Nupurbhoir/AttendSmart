@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AttendSmart - Enterprise Time & Attendance Management Portal Login">
+    <title>Login - AttendSmart Attendance Platform</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-layout">
+    
+    <div class="login-container slide-up-animation">
+        <!-- BRANDING SECTION (HROne Style Gradient Panel) -->
+        <div class="login-brand-panel">
+            <div class="brand-panel-content">
+                <div class="logo-area light-text">
+                    <div class="logo-icon orange-bg">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>AttendSmart</h1>
+                        <span class="sub-logo light">Time & Attendance Management</span>
+                    </div>
+                </div>
+                
+                <div class="brand-value-prop">
+                    <h3>Enterprise Attendance System</h3>
+                    <p>Track student schedules, biometric records, and geofence locations in real-time across campuses.</p>
+                </div>
+                
+                <div class="brand-footer-text">
+                    <span>AttendSmart Cloud Platform v3.4</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FORM SECTION -->
+        <div class="login-form-panel">
+            <div class="form-panel-content">
+                <div class="form-header">
+                    <h2>Welcome back</h2>
+                    <p>Log in to your AttendSmart administrative console.</p>
+                </div>
+                
+                <!-- Feedback error box -->
+                <div id="auth-error-box" class="alert-box error hidden">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span id="auth-error-msg">Invalid email or password.</span>
+                </div>
+
+                <form id="login-form" onsubmit="event.preventDefault(); handleUserLogin();">
+                    <div class="form-group">
+                        <label for="login-email">Administrative Email</label>
+                        <input type="email" id="login-email" class="form-control" required placeholder="admin@attendsmart.com" value="admin@attendsmart.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Console Password</label>
+                        <input type="password" id="login-password" class="form-control" required placeholder="••••••••" value="admin123">
+                    </div>
+                    
+                    <div class="form-options">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="remember-me" checked>
+                            <label for="remember-me">Remember session</label>
+                        </div>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">
+                        Sign In <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+                
+                <div class="form-footer-switch">
+                    <p>Need student assistance? <a href="#" class="primary-link">Contact Admin</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="app.js"></script>
+</body>
+</html>

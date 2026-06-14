@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  attendsmart-backend:
+    build: .
+    container_name: attendsmart-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Map the local database file into the container for persistent storage
+      - ./attendance.db:/app/attendance.db
+    restart: unless-stopped
+    environment:
+      - KAFKA_SIMULATOR_ENABLED=true
+      - ENVIRONMENT=production

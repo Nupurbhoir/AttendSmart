@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AttendSmart - Hardware Devices & Student Onboarding">
+    <title>Readers & Onboarding - AttendSmart Platform</title>
+    <!-- Check auth status before loading DOM -->
+    <script>
+        if (localStorage.getItem("attend_smart_token") !== "authenticated_admin") {
+            window.location.href = "login.html";
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+    <div class="app-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="logo-text">
+                    <h1>AttendSmart</h1>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item "><i class="fa-solid fa-chart-line"></i> <span>Dashboard</span></a>
+                <a href="simulator.html" class="nav-item "><i class="fa-solid fa-fingerprint"></i> <span>Terminal</span></a>
+                <a href="devices.html" class="nav-item active"><i class="fa-solid fa-microchip"></i> <span>Readers</span></a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button onclick="handleUserLogout();" class="nav-btn-logout"><i class="fa-solid fa-right-from-bracket"></i> <span>Sign Out</span></button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-wrapper">
+            <header class="top-header">
+                <div class="header-title">
+                    <h2>Hardware & Onboarding</h2>
+                    <p>Manage edge devices and register new students</p>
+                </div>
+                <div class="header-status">
+                    <div id="connection-status" class="status-pill online">
+                        <span class="status-dot"></span>
+                        <span id="connection-text">Connected</span>
+                    </div>
+                    <div id="sync-pending-badge" class="status-pill pending hidden">
+                        <span class="status-dot pulsing"></span>
+                        <span id="sync-text">Syncing</span>
+                    </div>
+                    <div class="clock-area">
+                        <i class="fa-regular fa-clock"></i>
+                        <span id="live-clock">--:--:--</span>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="page-content slide-up-animation">
+
+                <div class="devices-layout-grid">
+                    <div class="card onboarding-card">
+                        <div class="card-header">
+                            <h2><i class="fa-solid fa-user-plus"></i> Onboard Student</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-desc">Register a new student profile. They will appear on the dashboard instantly.</p>
+                            <div id="onboard-success-box" class="alert-box success hidden">
+                                <i class="fa-solid fa-circle-check"></i> <span>Onboarded!</span>
+                            </div>
+                            <form id="onboard-form" onsubmit="event.preventDefault(); handleStudentOnboard();">
+                                <div class="form-group">
+                                    <label>Student ID Code</label>
+                                    <input type="text" id="student-id" class="form-control" required placeholder="e.g. S104" pattern="S[0-9]{3,}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" id="student-name" class="form-control" required placeholder="e.g. Jane Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label>Student Email</label>
+                                    <input type="email" id="student-email" class="form-control" required placeholder="jane@school.edu">
+                                </div>
+                                <div class="form-group">
+                                    <label>Parent/Guardian Email</label>
+                                    <input type="email" id="parent-email" class="form-control" required placeholder="parent@home.com">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block mt-4 shadow-btn">
+                                    <i class="fa-solid fa-user-check"></i> Register Student
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="grid-column">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><i class="fa-solid fa-network-wired"></i> Scanning Readers</h2>
+                            </div>
+                            <div class="card-body no-padding">
+                                <div id="device-list-container" class="device-list"></div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><i class="fa-solid fa-gauge-high"></i> Hardware Telemetry</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="telemetry-grid">
+                                    <div class="telemetry-item">
+                                        <span class="tel-label">Latency</span>
+                                        <h4 class="tel-val">42ms</h4>
+                                    </div>
+                                    <div class="telemetry-item">
+                                        <span class="tel-label">Uptime</span>
+                                        <h4 class="tel-val text-success">99.9%</h4>
+                                    </div>
+                                    <div class="telemetry-item">
+                                        <span class="tel-label">Packet Loss</span>
+                                        <h4 class="tel-val">0.02%</h4>
+                                    </div>
+                                    <div class="telemetry-item">
+                                        <span class="tel-label">Daily Scans</span>
+                                        <h4 class="tel-val" id="telemetry-total-writes">10</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Script -->
+    <script src="app.js"></script>
+</body>
+</html>
