@@ -1,5 +1,9 @@
 # 🎓 AttendSmart: Enterprise Cloud Attendance System
 
+**Deployment Link:** [https://attendsmart.onrender.com/home.html](https://attendsmart.onrender.com/home.html)  
+**Submitted By:** NUPUR BHOIR / 150096724180  
+**Course/Degree:** BTECH-CSE  
+
 <div align="center">
   <img src="https://img.shields.io/badge/Python-3.9+-blue.svg" alt="Python">
   <img src="https://img.shields.io/badge/Architecture-Event--Driven-orange.svg" alt="Event-Driven">
